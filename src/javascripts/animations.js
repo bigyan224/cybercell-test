@@ -119,10 +119,8 @@ var swiper = new Swiper(".mySwiper", {
 
 
 function eventanimation() {
-  var events = document.querySelectorAll('.past-event');
 
-  events.forEach(event => {
-    gsap.from(event, {
+    gsap.from(".past-events-container .event", {
       y:"100%",
       opacity:0,
       duration:1,
@@ -131,10 +129,22 @@ function eventanimation() {
         toggleActions:"restart none restart none",
         scroller: '.main',
         start: 'top 40%',
-        end: '10% 50%',
-        stagger: true,
+        end: '10% 10%',
       },
-    });
+  });
+
+  gsap.from(".upcoming-events-container .event", {
+    x:"100%",
+    opacity:0,
+    duration:1,
+    stagger: 0.3,
+    scrollTrigger: {
+      trigger: '.page3',
+      toggleActions:"restart none restart none",
+      scroller:'.main',
+      start: 'top 40%',
+      end: '10% 50%',
+    },
   });
 }
 
@@ -151,4 +161,70 @@ gsap.to(".horizontal h1",{
     pin:true,
   }
 })
+
+function navbar_animation() {
+  let show = false;
+  let menu = document.querySelector(".nright2");
+
+  menu.addEventListener("click", function (e) {
+    if (show === false) {
+      gsap.to(".overflow-nav", {
+        x: '0%', // Corrected syntax for setting the transform property
+        duration: 1,
+        display: "block",
+      });
+    } else {
+      gsap.to(".overflow-nav", {
+        x: '100%',
+        duration: 1,
+        display: "none",
+      });
+    }
+    show = !show;
+  });
+}
+
+navbar_animation();
+
+function landing_animation(){
+  let tl = gsap.timeline();
+  tl.from('nav h3',{
+    opacity:0,
+    y:-50,
+    duration:0.4,
+    delay:0.5
+  })
+
+  if (window.matchMedia('(min-width: 900px)').matches) {
+
+    tl.from('nav .nav-right h4',{
+      opacity:0,
+      y:-50,
+      duration:0.5,
+      stagger:0.2,
+    })
+  }
+
+  if (window.matchMedia('(max-width: 900px)').matches) {
+    tl.from('.nright2',{
+      opacity:0,
+      y:-50,
+      duration:0.4,
+    })
+  }
+  
+  
+  tl.from('.hero .left',{
+    opacity:0,
+    y:50,
+    duration:0.5,
+  })
+  tl.from('.right img',{
+    opacity:0,
+    x:"100%",
+    duration:0.5,
+  })
+}
+landing_animation()
+
 

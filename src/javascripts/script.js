@@ -18,7 +18,7 @@ function events(){
                     <span class="text-xl">${event.date}</span>
                     <span class="text-3xl">${event.name}</span>
                     <span class="text-2xl text-center">${event.venue}</span>
-                    <button class="px-6 py-3 bg-white text-black rounded-full text-lg">know more</button>
+                    <button class="px-6 py-3 border-2 bg-white text-black rounded-full text-lg hover:bg-black hover:text-white hover:border-white duration-200">know more</button>
                 </div>
             `
 
